@@ -119,24 +119,28 @@
 </ul>
 
 	<script>
-const slides = document.querySelectorAll(".slide");
-let current = 0;
-let interval;
+const sliders = document.querySelectorAll(".slider");
 
-function startSlide() {
-  interval = setInterval(() => {
-    slides[current].classList.remove("active"); 
-    current = (current + 1) % slides.length;     
-    slides[current].classList.add("active");     
-  }, 3000);
-}
+sliders.forEach(slider => {
+  const slides = slider.querySelectorAll(".slide");
+  let current = 0;
+  let interval;
 
-const slider = document.querySelector(".slider");
-slider.addEventListener("mouseenter", () => clearInterval(interval));
-slider.addEventListener("mouseleave", startSlide);
+  function startSlide() {
+    interval = setInterval(() => {
+      slides[current].classList.remove("active"); 
+      current = (current + 1) % slides.length;     
+      slides[current].classList.add("active");     
+    }, 3000);
+  }
 
-startSlide();
+  slider.addEventListener("mouseenter", () => clearInterval(interval));
+  slider.addEventListener("mouseleave", startSlide);
+
+  startSlide();
+});
 </script>
+
 
 </div>
 </body>
